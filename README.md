@@ -6,6 +6,17 @@ curates it with Glue PySpark, and serves meter-health and consumption analytics 
 including **SQL-based consumption prediction** and QuickSight ML forecasting —
 through Athena and QuickSight.
 
+## 📊 Dashboard Output (QuickSight)
+
+Live dashboard built on a SPICE dataset over the curated Parquet table —
+full export: [Meter_Analytics_Over.pdf](docs/Meter_Analytics_Over.pdf)
+
+![Meter Analytics Overview — KPIs, consumption trend, health distribution](docs/meter-data-overiview-dashboard-01.png)
+
+![Meter Analytics — hourly power usage, top consumers, voltage bands](docs/meter-data-overiview-dashboard-02.png)
+
+![Consumption forecast — QuickSight ML forecasting](docs/meter-data-quick-forecast.png)
+
 ## Architecture
 
 ```mermaid
