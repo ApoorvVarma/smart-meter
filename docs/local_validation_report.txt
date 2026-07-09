@@ -1,0 +1,164 @@
+
+=== CEEW - Smart meter data Bareilly 2020.csv ===
+Schema:
+reading_ts      datetime64[us]
+energy_kwh             float64
+avg_voltage            float64
+avg_current            float64
+frequency_hz           float64
+meter_id                   str
+
+Summary statistics:
+                        reading_ts    energy_kwh   avg_voltage   avg_current  frequency_hz meter_id
+count                      6627097  6.627097e+06  6.627097e+06  6.627097e+06  6.627097e+06  6627097
+unique                         NaN           NaN           NaN           NaN           NaN       46
+top                            NaN           NaN           NaN           NaN           NaN     BR28
+freq                           NaN           NaN           NaN           NaN           NaN   172800
+mean    2020-06-27 19:50:52.505733  1.672860e-02  2.263214e+02  1.569974e+00  4.645928e+01      NaN
+min            2020-01-01 00:00:00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00      NaN
+25%            2020-03-28 15:51:00  2.000000e-03  2.309500e+02  2.300000e-01  4.996000e+01      NaN
+50%            2020-06-26 07:00:00  9.000000e-03  2.438400e+02  8.900000e-01  5.000000e+01      NaN
+75%            2020-09-26 14:06:00  2.000000e-02  2.535700e+02  1.970000e+00  5.004000e+01      NaN
+max            2020-12-31 23:57:00  3.000000e-01  3.987800e+02  5.704000e+01  6.970000e+01      NaN
+std                            NaN  2.421723e-02  6.430187e+01  2.136381e+00  1.282986e+01      NaN
+
+Meters: 46  Range: 2020-01-01 00:00:00 -> 2020-12-31 23:57:00
+Rows in=6,627,360  dupes=0  nulls=0  out_of_range=263  out=6,627,097
+Wrote datasets/cleaned/cleaned_ceew_-_smart_meter_data_bareilly_2020.csv (316.7 MB)
+
+=== CEEW - Smart meter data Bareilly 2021.csv ===
+Schema:
+reading_ts      datetime64[us]
+energy_kwh             float64
+avg_voltage            float64
+avg_current            float64
+frequency_hz           float64
+meter_id                   str
+
+Summary statistics:
+                        reading_ts    energy_kwh   avg_voltage   avg_current  frequency_hz meter_id
+count                      3948851  3.948851e+06  3.948851e+06  3.948851e+06  3.948851e+06  3948851
+unique                         NaN           NaN           NaN           NaN           NaN       38
+top                            NaN           NaN           NaN           NaN           NaN     BR11
+freq                           NaN           NaN           NaN           NaN           NaN   145440
+mean    2021-05-24 16:06:49.318032  1.940588e-02  2.195505e+02  1.805598e+00  4.564013e+01      NaN
+min            2021-01-01 00:00:00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00      NaN
+25%            2021-03-05 00:30:00  3.000000e-03  2.259200e+02  3.600000e-01  4.995000e+01      NaN
+50%            2021-05-22 12:48:00  1.100000e-02  2.399900e+02  1.060000e+00  5.000000e+01      NaN
+75%            2021-08-08 11:42:00  2.300000e-02  2.510900e+02  2.250000e+00  5.004000e+01      NaN
+max            2021-10-31 23:57:00  3.000000e-01  3.921500e+02  3.059000e+01  6.932000e+01      NaN
+std                            NaN  2.746335e-02  7.002086e+01  2.378114e+00  1.410617e+01      NaN
+
+Meters: 38  Range: 2021-01-01 00:00:00 -> 2021-10-31 23:57:00
+Rows in=3,948,960  dupes=0  nulls=0  out_of_range=109  out=3,948,851
+Wrote datasets/cleaned/cleaned_ceew_-_smart_meter_data_bareilly_2021.csv (188.7 MB)
+
+=== CEEW - Smart meter data Mathura 2019.csv ===
+Schema:
+reading_ts      datetime64[us]
+energy_kwh             float64
+avg_voltage            float64
+avg_current            float64
+frequency_hz           float64
+meter_id                   str
+
+Summary statistics:
+                        reading_ts    energy_kwh   avg_voltage   avg_current  frequency_hz meter_id
+count                      3588748  3.588748e+06  3.588748e+06  3.588748e+06  3.588748e+06  3588748
+unique                         NaN           NaN           NaN           NaN           NaN       38
+top                            NaN           NaN           NaN           NaN           NaN     MH21
+freq                           NaN           NaN           NaN           NaN           NaN   110435
+mean    2019-08-30 01:22:45.097789  2.033850e-02  2.234214e+02  1.940751e+00  4.628718e+01      NaN
+min            2019-05-01 00:00:00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00      NaN
+25%            2019-06-29 18:21:00  5.000000e-03  2.304000e+02  4.500000e-01  4.996000e+01      NaN
+50%            2019-08-31 02:27:00  1.200000e-02  2.440700e+02  1.190000e+00  5.001000e+01      NaN
+75%            2019-10-29 01:30:00  2.300000e-02  2.530400e+02  2.300000e+00  5.004000e+01      NaN
+max            2019-12-31 23:57:00  2.870000e-01  3.945500e+02  4.416000e+01  6.993000e+01      NaN
+std                            NaN  2.799828e-02  6.631174e+01  2.504322e+00  1.311611e+01      NaN
+
+Meters: 38  Range: 2019-05-01 00:00:00 -> 2019-12-31 23:57:00
+Rows in=3,588,874  dupes=0  nulls=0  out_of_range=126  out=3,588,748
+Wrote datasets/cleaned/cleaned_ceew_-_smart_meter_data_mathura_2019.csv (171.9 MB)
+
+=== CEEW - Smart meter data Mathura 2020.csv ===
+Schema:
+reading_ts      datetime64[us]
+energy_kwh             float64
+avg_voltage            float64
+avg_current            float64
+frequency_hz           float64
+meter_id                   str
+
+Summary statistics:
+                        reading_ts    energy_kwh   avg_voltage   avg_current  frequency_hz meter_id
+count                      3759337  3.759337e+06  3.759337e+06  3.759337e+06  3.759337e+06  3759337
+unique                         NaN           NaN           NaN           NaN           NaN       38
+top                            NaN           NaN           NaN           NaN           NaN     MH43
+freq                           NaN           NaN           NaN           NaN           NaN   171840
+mean    2020-06-30 00:21:43.860090  1.536510e-02  2.149983e+02  1.500902e+00  4.443628e+01      NaN
+min            2020-01-01 00:00:00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00      NaN
+25%            2020-03-27 14:06:00  2.000000e-03  2.271300e+02  2.100000e-01  4.995000e+01      NaN
+50%            2020-06-29 14:09:00  8.000000e-03  2.432200e+02  8.100000e-01  5.000000e+01      NaN
+75%            2020-10-04 16:15:00  1.800000e-02  2.530500e+02  1.840000e+00  5.004000e+01      NaN
+max            2020-12-31 23:57:00  2.990000e-01  3.718300e+02  4.280000e+01  6.905000e+01      NaN
+std                            NaN  2.268836e-02  7.818363e+01  2.070124e+00  1.572728e+01      NaN
+
+Meters: 38  Range: 2020-01-01 00:00:00 -> 2020-12-31 23:57:00
+Rows in=3,759,360  dupes=0  nulls=0  out_of_range=23  out=3,759,337
+Wrote datasets/cleaned/cleaned_ceew_-_smart_meter_data_mathura_2020.csv (178.9 MB)
+
+=== SM Cleaned Data BR2019.csv ===
+Schema:
+reading_ts      datetime64[us]
+energy_kwh             float64
+avg_voltage            float64
+avg_current            float64
+frequency_hz           float64
+meter_id                   str
+
+Summary statistics:
+                        reading_ts    energy_kwh   avg_voltage   avg_current  frequency_hz meter_id
+count                      2919294  2.919294e+06  2.919294e+06  2.919294e+06  2.919294e+06  2919294
+unique                         NaN           NaN           NaN           NaN           NaN       46
+top                            NaN           NaN           NaN           NaN           NaN     BR26
+freq                           NaN           NaN           NaN           NaN           NaN    78720
+mean    2019-10-13 17:46:53.557029  1.483063e-02  2.303522e+02  1.385991e+00  4.680525e+01      NaN
+min            2019-05-09 00:00:00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00      NaN
+25%            2019-09-07 09:33:00  2.000000e-03  2.355600e+02  2.100000e-01  4.996000e+01      NaN
+50%            2019-10-16 10:57:00  9.000000e-03  2.462400e+02  8.200000e-01  5.001000e+01      NaN
+75%            2019-11-21 18:18:00  1.800000e-02  2.551400e+02  1.740000e+00  5.004000e+01      NaN
+max            2019-12-31 23:57:00  2.880000e-01  3.674100e+02  1.260500e+02  6.725000e+01      NaN
+std                            NaN  2.083784e-02  6.183149e+01  1.851963e+00  1.223605e+01      NaN
+
+Meters: 46  Range: 2019-05-09 00:00:00 -> 2019-12-31 23:57:00
+Rows in=2,919,315  dupes=0  nulls=0  out_of_range=21  out=2,919,294
+Wrote datasets/cleaned/cleaned_sm_cleaned_data_br2019.csv (139.6 MB)
+
+=== SM Cleaned Data MH2021.csv ===
+Schema:
+reading_ts      datetime64[us]
+energy_kwh             float64
+avg_voltage            float64
+avg_current            float64
+frequency_hz           float64
+meter_id                   str
+
+Summary statistics:
+                        reading_ts     energy_kwh    avg_voltage    avg_current   frequency_hz meter_id
+count                       550509  550509.000000  550509.000000  550509.000000  550509.000000   550509
+unique                         NaN            NaN            NaN            NaN            NaN       35
+top                            NaN            NaN            NaN            NaN            NaN     MH23
+freq                           NaN            NaN            NaN            NaN            NaN    24000
+mean    2021-01-26 17:20:50.114385       0.006852     223.694622       0.708017      43.954599      NaN
+min            2021-01-01 00:00:00       0.000000       0.000000       0.000000       0.000000      NaN
+25%            2021-01-14 17:00:00       0.001000     242.650000       0.090000      49.940000      NaN
+50%            2021-01-26 13:27:00       0.003000     253.890000       0.370000      50.000000      NaN
+75%            2021-02-08 14:15:00       0.008000     261.570000       0.890000      50.040000      NaN
+max            2021-02-20 23:57:00       0.232000     394.530000      18.290000      66.080000      NaN
+std                            NaN       0.013762      83.806800       1.192128      16.305955      NaN
+
+Meters: 35  Range: 2021-01-01 00:00:00 -> 2021-02-20 23:57:00
+Rows in=550,560  dupes=0  nulls=0  out_of_range=51  out=550,509
+Wrote datasets/cleaned/cleaned_sm_cleaned_data_mh2021.csv (26.2 MB)
+
+DONE. 21,394,429 rows in -> 21,393,836 rows out across 6 file(s)
