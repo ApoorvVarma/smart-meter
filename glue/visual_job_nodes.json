@@ -1,0 +1,42 @@
+{
+  "node-source": {
+    "CatalogSource": {
+      "Name": "Raw Meter Readings",
+      "Database": "meter_health_db",
+      "Table": "raw_meter_readings"
+    }
+  },
+  "node-rename": {
+    "ApplyMapping": {
+      "Name": "Rename & Cast Columns",
+      "Inputs": ["node-source"],
+      "Mapping": [
+        {"ToKey": "reading_ts",   "FromPath": ["x_timestamp"],          "FromType": "string", "ToType": "string"},
+        {"ToKey": "energy_kwh",   "FromPath": ["t_kwh"],                "FromType": "double", "ToType": "double"},
+        {"ToKey": "avg_voltage",  "FromPath": ["z_avg voltage (volt)"], "FromType": "double", "ToType": "double"},
+        {"ToKey": "avg_current",  "FromPath": ["z_avg current (amp)"],  "FromType": "double", "ToType": "double"},
+        {"ToKey": "frequency_hz", "FromPath": ["y_freq (hz)"],          "FromType": "double", "ToType": "double"},
+        {"ToKey": "meter_id",     "FromPath": ["meter"],                "FromType": "string", "ToType": "string"}
+      ]
+    }
+  },
+  "node-sql": {
+    "SparkSQL": {
+      "Name": "Clean, Enrich & Health Rules",
+      "Inputs": ["node-rename"],
+      "SqlAliases": [{"From": "node-rename", "Alias": "src"}],
+      "SqlQuery": "WITH typed AS (SELECT to_timestamp(reading_ts) AS reading_ts, energy_kwh, avg_voltage, avg_current, frequency_hz, trim(meter_id) AS meter_id FROM src WHERE energy_kwh BETWEEN 0 AND 50 AND avg_voltage BETWEEN 0 AND 400 AND avg_current BETWEEN 0 AND 200 AND frequency_hz BETWEEN 0 AND 70 AND meter_id IS NOT NULL), dedup AS (SELECT *, row_number() OVER (PARTITION BY meter_id, reading_ts ORDER BY reading_ts) AS rn FROM typed WHERE reading_ts IS NOT NULL) SELECT reading_ts, energy_kwh, avg_voltage, avg_current, frequency_hz, meter_id, year(reading_ts) AS year, month(reading_ts) AS month, day(reading_ts) AS day, hour(reading_ts) AS hour, date_format(reading_ts, 'EEEE') AS day_of_week, dayofweek(reading_ts) IN (1,7) AS is_weekend, round(avg_voltage * avg_current / 1000, 4) AS power_kw, CASE WHEN avg_voltage > 240 THEN 'OVER_VOLTAGE' WHEN avg_voltage >= 220 THEN 'NORMAL' WHEN avg_voltage >= 200 THEN 'LOW' ELSE 'CRITICAL_LOW' END AS voltage_band, CASE WHEN avg_current > 9 THEN 'HIGH_LOAD' WHEN avg_current >= 3 THEN 'MEDIUM_LOAD' WHEN avg_current > 0 THEN 'LIGHT_LOAD' ELSE 'NO_LOAD' END AS current_band, CASE WHEN avg_voltage * avg_current / 1000 > 2.0 THEN 'HIGH' WHEN avg_voltage * avg_current / 1000 >= 0.5 THEN 'MEDIUM' WHEN avg_voltage * avg_current / 1000 > 0 THEN 'LOW' ELSE 'IDLE' END AS power_band, greatest(0.0, 100.0 - CASE WHEN avg_voltage > 240 THEN 30.0 WHEN avg_voltage < 200 THEN 25.0 WHEN avg_voltage < 220 THEN 10.0 ELSE 0.0 END - CASE WHEN avg_current > 9 THEN 20.0 ELSE 0.0 END - CASE WHEN frequency_hz < 49.5 OR frequency_hz > 50.5 THEN 15.0 ELSE 0.0 END - CASE WHEN energy_kwh <= 0.0005 AND avg_voltage > 100 THEN 20.0 ELSE 0.0 END) AS health_score, CASE WHEN avg_voltage > 240 THEN 'CRITICAL' WHEN avg_voltage < 200 THEN 'WARNING' WHEN avg_current > 9 THEN 'HIGH_LOAD' WHEN energy_kwh <= 0.0005 AND avg_voltage > 100 THEN 'POSSIBLE_METER_ISSUE' ELSE 'HEALTHY' END AS health_status FROM dedup WHERE rn = 1"
+    }
+  },
+  "node-target": {
+    "S3DirectTarget": {
+      "Name": "Curated S3 (Parquet)",
+      "Inputs": ["node-sql"],
+      "Path": "s3://meter-health-demo-519628236805/curated-visual/meter_readings/",
+      "Format": "parquet",
+      "Compression": "snappy",
+      "PartitionKeys": [["year"], ["month"]],
+      "SchemaChangePolicy": {"EnableUpdateCatalog": false}
+    }
+  }
+}
