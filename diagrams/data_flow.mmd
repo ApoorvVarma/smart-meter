@@ -1,0 +1,11 @@
+flowchart LR
+    A[Kaggle CSVs] -->|aws s3 cp| B[(S3 raw/)]
+    B --> C[Glue Crawler]
+    C --> D[Glue Data Catalog<br/>meter_health_db.raw]
+    D --> E[Glue ETL PySpark<br/>clean + enrich + health rules]
+    E -->|Parquet, year/month partitions| F[(S3 curated/)]
+    F --> G[Athena<br/>meter_readings_curated]
+    G --> H[QuickSight Dashboard]
+    E -.logs.-> I[CloudWatch]
+    C -.logs.-> I
+    G -.metrics.-> I

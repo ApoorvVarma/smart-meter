@@ -1,0 +1,25 @@
+# Data files — too large for git; regenerate via scripts/download_dataset.py
+datasets/
+*.csv
+*.zip
+*.parquet
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate*
+terraform/.terraform.lock.hcl
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Credentials — never commit
+creds.md
+*.pem
+.env
